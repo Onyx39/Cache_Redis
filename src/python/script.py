@@ -1,20 +1,19 @@
 import redis
+import sys
 
+id = str(sys.argv[1])
 
-bd_redis = redis.Redis(db=1)
-#print(bd_redis.get_connection_kwargs)
+bd_redis = redis.StrictRedis(password="redismaster", db=1)
+if bd_redis.get("exists " + id) == 1 :
+    compteur = bd_redis.get("get " + id)
+    timeout = bd_redis.get("ttl " + id)
+    print(compteur, timeout)
+    if compteur <= 10 and timeout > 0 :
+        bd_redis.execute_command("incr " + id)
+        exit(1)
+    else : exit(0)
 
-bd_test = redis.StrictRedis(password="redismaster",db=2)
-bd_test.mset({"Valentin" : 1, 'temps' : 20})
-print(bd_test.get("Valentin"))
-
-
-
-
-def test_connection_autorisé () :
-    return True
-
-
-
-def mettre_connection_en_cache () :
-    return True
+else :
+    bd_redis.execute_command("set " + id + " 1")
+    bd_redis.execute_command("expire " + id + " 600")
+    exit(1)

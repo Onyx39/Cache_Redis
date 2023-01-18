@@ -1,8 +1,7 @@
 <?php
 
 function connexionBdd(){
-
-    //include("../../include/mysql_inc.php");
+    //Fonction permettent de se connecter à la base de données 
 
     $conn = @mysqli_connect("tp-epua:3308", "richaval", "kwia6s9y");
 

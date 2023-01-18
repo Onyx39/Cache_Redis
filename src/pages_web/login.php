@@ -28,6 +28,7 @@
                     $result =  mysqli_query($conn, $sql) or die("Requête invalide : ". mysqli_error($conn)."</br>".$sql);
                     $val = mysqli_fetch_array($result);
                     if ($val[0] == 1) {
+            
                     	$sql2 = "SELECT id_utilisateur FROM utilisateur WHERE email = '".$email."' AND motdepasse = '".$mdp."';";
                         $result2 =  mysqli_query($conn, $sql2) or die("Requête invalide : ". mysqli_error($conn)."</br>".$sql2);
                         $val2 = mysqli_fetch_array($result2);
@@ -36,6 +37,29 @@
                         $val3 = mysqli_fetch_array($result3);
                         $user_firstname = $val3[0];
                         $user_id = $val2[0];
+
+                        // Test pour le retour du script python
+			            /*
+                        $cmd = "/bin/python3 ../python/script.py ";
+                        $command = escapeshellcmd($cmd." ".$user_id);
+                        $shelloutput = shell_exec($command);
+                        echo "++".$shelloutput."++";
+                         
+                        $test = exec('python ../python/script.py ' + $user_id);
+                        echo $test;
+                        
+                        $command_exec = escapeshellcmd('../python/script.py' + $user_id);
+                        $str_output = shell_exec($command_exec);
+                        echo $str_output;
+                        
+                        
+                        $prog = '../python/script.py '.$user_id;
+                        $output = shell_exec($prog);
+                        
+                        exec('python ../python/script.py', $output, $ret_code);
+                        echo "sortie : ---".$ret_code."---";
+                        */
+
                         echo "<br>Bienvenue ".$user_firstname." !  ";
                         echo "Suivez <a href='services.php'>ce lien</a> pour accéder à nos services.";
                     }  
