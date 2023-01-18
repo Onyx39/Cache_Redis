@@ -1,3 +1,5 @@
+<!DOCTYPE HTML>
+
 <html>
     <head>
         <title>
@@ -10,7 +12,7 @@
         <center>
         Bienvenue sur la page d'acceuil d'<i>EtuServices</i><br><br>
 
-        Vous pouvez vous connecter en cliquant <a href="/login.php">ici</a>
+        Vous pouvez vous connecter en cliquant <a href="login.php">ici</a>
 
         </center>
 
